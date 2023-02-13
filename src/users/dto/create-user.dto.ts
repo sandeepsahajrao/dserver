@@ -2,35 +2,35 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IsString, MaxLength, MinLength, IsEmpty } from 'class-validator';
 
 export class CreateUserDto {
-  @IsEmpty()
+  // @IsEmpty()
   @IsString()
   @MinLength(5)
   @MaxLength(40)
   @Prop({ required: true })
   FirstName: string;
 
-  @IsEmpty()
+  // @IsEmpty()
   @IsString()
   @MinLength(5)
   @MaxLength(40)
   @Prop({ required: true })
   LastName: string;
 
-  @IsEmpty()
+  // @IsEmpty()
   @IsString()
   @MinLength(5)
   @MaxLength(32)
   @Prop({ required: true, unique: true })
   UserName: string;
 
-  @IsEmpty()
+  // @IsEmpty()
   @IsString()
   @MinLength(5)
   @MaxLength(100)
   @Prop({ required: true, unique: true })
   Email: string;
 
-  @IsEmpty()
+  // @IsEmpty()
   @MinLength(5)
   @MaxLength(32)
   @Prop({ required: true })
