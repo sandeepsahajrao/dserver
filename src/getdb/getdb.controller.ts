@@ -1,40 +1,39 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { GetdbService } from './getdb.service';
-import { CreateGetdbDto } from './dto/create-getdb.dto';
-import { UpdateGetdbDto } from './dto/update-getdb.dto';
-
 
 @Controller('getdb')
 export class GetdbController {
   constructor(private readonly getdbService: GetdbService) {}
 
-  @Post()
-  create(@Body() createGetdbDto: CreateGetdbDto) {
-    return this.getdbService.create(createGetdbDto);
+  @Get('findAll_master_child')
+  async getItems1(): Promise<any> {
+    return this.getdbService.findAll_master_child();
   }
 
-  @Get()
-  async getItems(): Promise<any> {
-    return this.getdbService.getItems();
+  // second Api
+  @Get('findAll_task_master')
+  async getItems2(): Promise<any> {
+    return this.getdbService.findAll_task_master();
   }
 
-  // @Get()
-  // findAll() {
-  //   return this.getdbService.findAll();
-  // }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.getdbService.findOne(+id);
+  // third Api
+  @Get('findAll_test_case_inputs')
+  async getItems3(): Promise<any> {
+    return this.getdbService.findAll_test_case_inputs();
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGetdbDto: UpdateGetdbDto) {
-    return this.getdbService.update(+id, updateGetdbDto);
+  // forth Api
+  @Get('findAll_test_case_master')
+  async getItems4(): Promise<any> {
+    return this.getdbService.findAll_test_case_master();
+  }
+  // fifth Api
+  @Get('findAll_submitted_tasks')
+  async getItems5(): Promise<any> {
+    return this.getdbService.findAll_submitted_tasks();
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.getdbService.remove(+id);
-  }
+
+
+
 }
