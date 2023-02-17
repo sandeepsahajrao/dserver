@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { GetdbService } from './getdb.service';
 
 @Controller('getdb')
@@ -9,6 +9,7 @@ export class GetdbController {
   async getItems1(): Promise<any> {
     return this.getdbService.findAll_master_child();
   }
+
 
   // second Api
   @Get('findAll_task_master')
@@ -34,6 +35,24 @@ export class GetdbController {
   }
 
 
+  // this api for /task:id
+   @Get('/task/:id')
+  async getItems6(@Param() Param:Record<string,any>): Promise<any> {
+    console.log(Param)
+    return this.getdbService.findAll_all_Task(Param.id);
+  }
+  // this api for /task:id code definition
+   @Get('/taskcode/:id')
+  async getItems7(@Param() Param:Record<string,any>): Promise<any> {
+    console.log(Param)
+    return this.getdbService.findAll_all_Task_id(Param.id);
+  }
+
+  // @Get('/task/:id')
+  // async getTask(@Param('id') id: number): Promise<any[]> {
+  
+  //   return await this.getdbService.findAll_all_Task(id);
+  // }
 
 
 }

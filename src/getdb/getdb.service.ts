@@ -113,6 +113,51 @@ export class GetdbService {
   }
 
 
+  // sixth api
+async findAll_all_Task(id: number | string): Promise<any[]> {
+  const query = 'SELECT * FROM task_master WHERE id = ?';
+  console.log(query, id);
+
+  const [rows] = await this.connection.query(query, [id]);
+
+  const tasks6 = (rows as { [key: string]: any }[]).map((row) => {
+    return {
+      id: row.id,
+      task_name: row.task_name,
+      task_defination: row.task_defination,
+      task_for: row.task_for,
+      task_type: row.task_type,
+      is_active: row.is_active,
+      is_public: row.is_public,
+    };
+  });
+
+  return tasks6;
+}
+
+// api with id with code definition
+async findAll_all_Task_id(id: number | string): Promise<any[]> {
+  const query = 'SELECT * FROM `task_master_child` WHERE task_master_id=?';
+  console.log(query, id);
+
+  const [rows] = await this.connection.query(query, [id]);
+
+  const tasks7 = (rows as { [key: string]: any }[]).map((row) => {
+    return {
+        id: row.id,
+        taskMasterId: row.task_master_id,
+        taskCode: row.task_code,
+        language: row.language,
+        isActive: row.is_active,
+    };
+  });
+
+  return tasks7;
+
+}
+
+
+
 
   findOne(id: number) {
     return `This action returns a #${id} getdb`;
